@@ -3,6 +3,9 @@ import { Weather } from './Weather'
 
 export const Header = () => {
   return (
-    <div><Weather /></div>
+    <div>
+      <h3>welcome back mistah</h3>
+      <Weather />
+    </div>
   )
 }

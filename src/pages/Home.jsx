@@ -4,6 +4,7 @@ import { TodoList } from "../Components/TodoList";
 import Modal from "../Components/Modal";
 import Pagination from "../Components/Pagination";
 import { Header } from "../Components/Header";
+import Navbar from "../Components/Navbar";
 
 function Home() {
   const [input, setInput] = useState("");
@@ -27,6 +28,7 @@ function Home() {
 
   return (
     <div className="app-container">
+      <Navbar />
       <Header />
       <Form
         input={input}
