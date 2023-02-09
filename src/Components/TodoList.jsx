@@ -1,6 +1,12 @@
 import React from "react";
 
-export const TodoList = ({ todos, setTodos, setEditTodo, setShowModal }) => {
+export const TodoList = ({
+  currentTodos,
+  todos,
+  setTodos,
+  setEditTodo,
+  setShowModal,
+}) => {
   const handleComplete = (todo) => {
     setTodos(
       todos.map((item) => {
@@ -17,43 +23,41 @@ export const TodoList = ({ todos, setTodos, setEditTodo, setShowModal }) => {
       return todo.id === id;
     });
 
-    setEditTodo(findTodo)
-    setShowModal(true)
+    setEditTodo(findTodo);
+    setShowModal(true);
   };
 
   const handleDelete = ({ id }) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  return (
-    <div>
-      {todos.map((todo) => (
-        <li className="list-item" key={todo.id}>
-          <span type="text" className="list">
-            {todo.title}
-          </span>
-          <div>
-            <button
-              className="button-complete task-button"
-              onClick={() => handleComplete(todo)}
-            >
-              <i className="fa fa-check-circle"></i>
-            </button>
-            <button
-              className="button-edit task-button"
-              onClick={() => handleEdit(todo)}
-            >
-              <i className="fa fa-edit"></i>
-            </button>
-            <button
-              className="button-delete task-button"
-              onClick={() => handleDelete(todo)}
-            >
-              <i className="fa fa-trash"></i>
-            </button>
-          </div>
-        </li>
-      ))}
-    </div>
-  );
+  const todoElements = currentTodos.map((todo) => (
+    <li className="list-item" key={todo.id}>
+      <span type="text" className="list">
+        {todo.title}
+      </span>
+      <div>
+        <button
+          className="button-complete task-button"
+          onClick={() => handleComplete(todo)}
+        >
+          <i className="fa fa-check-circle"></i>
+        </button>
+        <button
+          className="button-edit task-button"
+          onClick={() => handleEdit(todo)}
+        >
+          <i className="fa fa-edit"></i>
+        </button>
+        <button
+          className="button-delete task-button"
+          onClick={() => handleDelete(todo)}
+        >
+          <i className="fa fa-trash"></i>
+        </button>
+      </div>
+    </li>
+  ));
+
+  return <div>{todoElements}</div>;
 };

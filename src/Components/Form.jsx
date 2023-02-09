@@ -6,8 +6,6 @@ export default function Form({
   setInput,
   todos,
   setTodos,
-  editTodo,
-  setEditTodo,
 }) {
 
   const onInputChange = (e) => {
