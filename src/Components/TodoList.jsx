@@ -1,61 +1,58 @@
-import { useState } from 'react'
+import React from "react";
 
-export default function TodoList() {
-  const [input, setInput] = useState("");
-  const [todos, setTodos] = useState([]);
-
-  const changeHandler = (e) => {
-    const { value } = e.target;
-    setInput(value);
+export const TodoList = ({ todos, setTodos, setEditTodo }) => {
+  const handleComplete = (todo) => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return { ...item, completed: !item.completed };
+        }
+        return item;
+      })
+    );
   };
 
-  const clickHandler = () => {
-    setTodos((prevTodos) => {
-      return [...prevTodos, input];
+  const handleEdit = ({ id }) => {
+    const findTodo = todos.find((todo) => {
+      return todo.id === id;
     });
 
-    setInput("");
+    setEditTodo(findTodo)
   };
 
-  const deleteItem = (e) => {
-    // console.log(e.target.id)
-    const todosCopy = todos;
-    if (e.target.id > -1) {
-      todosCopy.splice(e.target.id, 1);
-    }
-
-    setTodos(todosCopy);
+  const handleDelete = ({ id }) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
-
-  console.log(todos);
-
-  const todoElements = todos.map((todo, index) => {
-    return (
-      <li key={index}>
-        {todo}{" "}
-        <button id={index} onClick={deleteItem}>
-          {" "}
-          Delete
-        </button>
-      </li>
-    );
-  });
 
   return (
     <div>
-      <label htmlFor="input">Input To Do</label>
-      <input
-        id="input"
-        type="text"
-        placeholder="type something"
-        value={input}
-        onChange={changeHandler}
-      />
-      <button onClick={clickHandler}>Submit Todo</button>
-
-      <div>
-        <ul>{todoElements}</ul>
-      </div>
+      {todos.map((todo) => (
+        <li className="list-item" key={todo.id}>
+          <span type="text" className="list">
+            {todo.title}
+          </span>
+          <div>
+            <button
+              className="button-complete task-button"
+              onClick={() => handleComplete(todo)}
+            >
+              <i className="fa fa-check-circle"></i>
+            </button>
+            <button
+              className="button-edit task-button"
+              onClick={() => handleEdit(todo)}
+            >
+              <i className="fa fa-edit"></i>
+            </button>
+            <button
+              className="button-delete task-button"
+              onClick={() => handleDelete(todo)}
+            >
+              <i className="fa fa-trash"></i>
+            </button>
+          </div>
+        </li>
+      ))}
     </div>
   );
-}
+};
