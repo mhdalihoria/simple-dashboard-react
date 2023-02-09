@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Components/Form";
 import { TodoList } from "./Components/TodoList";
 import "./App.css";
@@ -6,9 +6,15 @@ import Modal from "./Components/Modal";
 
 function App() {
   const [input, setInput] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(()=>{
+    return JSON.parse(localStorage.getItem('todos'))|| []
+  });
   const [editTodo, setEditTodo] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(()=> {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
 
   return (
     <div className="app-container">
