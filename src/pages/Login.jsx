@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ContextObj } from "../Context";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { user, setUser } = useContext(ContextObj);
+  const [deleteAcc, setDeleteAcc] = useState(false)
+  const [saveAccChanges, setSaveAccChanges] = useState(false)
+  const navigate = useNavigate()
 
   const changeHandler = (e) => {
     const { value, name } = e.target;
@@ -16,14 +20,27 @@ export const Login = () => {
   };
 
   const saveChanges = () => {
+    //apply filteration logic
     //add user to local storage
     //redirect to home page
   }
 
   const deleteAccount = () => {
-    //remove user from local storage
-    //redirect to home page
+    setDeleteAcc(true)
+    navigate("/")
   }
+
+  useEffect(() => {
+    // first
+  
+  }, [saveAccChanges])
+  
+
+  useEffect(() => {
+    localStorage.removeItem("user")
+  
+  }, [deleteAcc])
+  
 
   return (
     <div className="login-container">
