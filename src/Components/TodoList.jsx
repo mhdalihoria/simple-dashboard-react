@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TodoList = ({ todos, setTodos, setEditTodo }) => {
+export const TodoList = ({ todos, setTodos, setEditTodo, setShowModal }) => {
   const handleComplete = (todo) => {
     setTodos(
       todos.map((item) => {
@@ -18,6 +18,7 @@ export const TodoList = ({ todos, setTodos, setEditTodo }) => {
     });
 
     setEditTodo(findTodo)
+    setShowModal(true)
   };
 
   const handleDelete = ({ id }) => {

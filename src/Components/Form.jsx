@@ -9,32 +9,32 @@ export default function Form({
   editTodo,
   setEditTodo,
 }) {
+
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
 
-
   const onFormSubmit = (e) => {
     e.preventDefault();
-      setTodos([...todos, { id: uuidv4(), title: input, completed: false }]);
-      setInput("");
-    
+    setTodos([...todos, { id: uuidv4(), title: input, completed: false }]);
+    setInput("");
   };
   return (
     <>
-    <form onSubmit={onFormSubmit}>
-      <input
-        type="text"
-        placeholder="Enter a Todo"
-        className="task-input"
-        value={input}
-        required
-        onChange={onInputChange}
-      />
-      <button className="button-add" type="submit">
-        Add
-      </button>
-    </form>
+      <form onSubmit={onFormSubmit}>
+        <input
+          type="text"
+          placeholder="Enter a Todo"
+          className="task-input"
+          value={input}
+          required
+          onChange={onInputChange}
+        />
+        <button className="button-add" type="submit">
+          Add
+        </button>
+      </form>
+
     </>
   );
 }
