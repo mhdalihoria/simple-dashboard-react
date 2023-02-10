@@ -32,8 +32,6 @@ export const TodoList = ({
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  console.log()
-
   const todoElements = currentTodos.map((todo) => (
     <div className="todo-item" key={todo.id}>
       <img src={taskIcon} />

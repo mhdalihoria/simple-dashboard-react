@@ -175,7 +175,6 @@ export const Login = () => {
         loginErrors.imgLnk === ""
       ) {
         localStorage.setItem("user", JSON.stringify(user));
-        console.log("everything's dandy");
 
         setTimeout(() => {
           navigate("/");
