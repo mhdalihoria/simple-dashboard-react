@@ -27,24 +27,29 @@ export const Login = () => {
     });
   };
 
-  const saveChanges = () => {
-    //apply filteration logic
-    // verifyCredientials()
-    //add user to local storage
+  const saveChanges = (e) => {
+    e.preventDefault();
     setSaveAccChanges(true);
-    //redirect to home page
-    navigate("/");
-  };
+    setDeleteAcc(false);
 
-  const deleteAccount = () => {
+  };
+  console.log(saveAccChanges, deleteAcc);
+
+  const deleteAccount = (e) => {
+    e.preventDefault();
     setDeleteAcc(true);
-    navigate("/");
+    setSaveAccChanges(false);
+
   };
 
   useEffect(() => {
-    // if (saveAccChanges === true) {
+    if (saveAccChanges === true) {
         localStorage.setItem("user", JSON.stringify(user));
-    // }
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+
+    }
   }, [saveAccChanges]);
 
   useEffect(() => {
@@ -58,12 +63,24 @@ export const Login = () => {
         imgLnk: "",
         age: "",
       });
-        localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify({
+        usrName: "",
+        email: "",
+        pwd: "",
+        pwd2: "",
+        imgLnk: "",
+        age: "",
+      }));
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+
     }
   }, [deleteAcc]);
 
   return (
-    <div className="login-container">
+    // <div className="login-container"></div>
+    <form>
       <label htmlFor="usrName">Name</label>
       <input
         type="text"
@@ -111,19 +128,19 @@ export const Login = () => {
         required
         minLength={8}
       />
-      <label htmlFor="img">Enter your Image Link</label>
+      <label htmlFor="imgLnk">Enter your Image Link</label>
       <input
         type="text"
-        id="img"
-        name="img"
-        value={user.img}
+        id="imgLnk"
+        name="imgLnk"
+        value={user.imgLnk}
         onChange={changeHandler}
         required
       />
 
       <button onClick={saveChanges}>Save</button>
       <button onClick={deleteAccount}>Delete Account</button>
-    </div>
+    </form>
   );
 };
 
