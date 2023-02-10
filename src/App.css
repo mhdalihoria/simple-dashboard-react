@@ -42,38 +42,95 @@ nav {
   border-radius: 50px;
 }
 
-
 .user-settings {
-    position: fixed;
-    top: 60px;
-    right: 30px;
-    background-color: white;
-    opacity: .9;
-    border: 1px solid grey;
+  position: fixed;
+  top: 60px;
+  right: 30px;
+  background-color: white;
+  opacity: 0.9;
+  border: 1px solid grey;
 
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
-.profile, .login {
+.profile,
+.login {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   text-decoration: none;
   color: #333333;
   background-color: white;
-  line-height: 20px;  
+  line-height: 20px;
   padding: 10px 25px;
   border: 1px solid grey;
-
 }
 
 .login {
-    border: 1px solid grey;
-    border-radius: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
-
-
-
 /* navbar styling end */
+
+/* header styling start */
+.header {
+  background: #ffe2a7;
+  border-radius: 10px;
+  margin: 2rem 2rem;
+  padding: 1rem;
+}
+
+.header h3 {
+  font-weight: 500;
+  text-align: center;
+}
+
+.weather-container {
+  display: flex;
+  margin-top: 1.5em;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.weather-container .text {
+    text-align: center;
+    padding-right: 1em;
+}
+
+.text-temp {
+  color: #ab31d6;
+}
+
+.weather-container .img img{
+    width: 100px;
+    object-fit: cover;
+}
+/* header styling end */
+
+/* Media Queries */
+
+@media (min-width: 400px) {
+    nav {
+        max-width: 90%;
+        margin: .5rem auto;
+      }
+
+  .header {
+    max-width: 80%;
+    margin: auto;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+  }
+  .header h3 {
+    font-size: 1.5rem;
+    width: 200px;
+    text-align: left;
+    line-height: 2em;
+  }
+}

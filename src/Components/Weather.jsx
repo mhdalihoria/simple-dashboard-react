@@ -18,11 +18,11 @@ export const Weather = () => {
     fetchWeatherData();
   }, []);
   return (
-    <div>
+    <div className="weather-container">
       {weatherInfo && (
         <>
           <div className="text">
-            {weatherInfo.desc}, {Math.floor(weatherInfo.temp - 273.15)}
+            <span>{weatherInfo.desc},</span> <br/><span className="text-temp">{Math.floor(weatherInfo.temp - 273.15)}C</span>
           </div>
           <div className="img">
             <img src={weatherInfo.img} />
