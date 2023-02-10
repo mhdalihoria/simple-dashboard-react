@@ -22,8 +22,8 @@ export default function Navbar() {
       </div>
       {showSettings && (
         <div className="user-settings">
-            <span>Profile</span>
-            <span><Link to="/login">Logout</Link></span>
+            <span><Link to="/login">Profile</Link></span>
+            <span>Logout</span>
         </div>
       )}
     </nav>
