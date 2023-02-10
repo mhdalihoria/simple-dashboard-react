@@ -1,26 +1,79 @@
-.app-container {
-    /* position: relative; */
-}
-
-
-.modal-container, .modal {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+/* Modal styling start */
+.modal-container,
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .modal-container {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, .5);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-    width: 200px;
-    height: 200px;
-    background-color: #fff;
-    
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
 }
+/* Modal styling end */
+
+/* ******************************************* */
+
+/* navbar styling start */
+nav {
+  max-width: 100%;
+  max-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 1rem;
+}
+
+.left img,
+.right img {
+  width: 50px;
+  height: auto;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+
+
+.user-settings {
+    position: fixed;
+    top: 60px;
+    right: 30px;
+    background-color: white;
+    opacity: .9;
+    border: 1px solid grey;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profile, .login {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #333333;
+  background-color: white;
+  line-height: 20px;  
+  padding: 10px 25px;
+  border: 1px solid grey;
+
+}
+
+.login {
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+
+
+
+/* navbar styling end */
