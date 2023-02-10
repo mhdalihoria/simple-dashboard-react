@@ -7,14 +7,15 @@ const Pagination = ({ todosPerPage, totalTodos, paginate }) => {
     pageNumbers.push(i);
   }
 
+  
   return (
     <nav>
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number}>
-            <a onClick={() => paginate(number)} href="!#">
+            <span onClick={() => paginate(number)}>
               {number}
-            </a>
+            </span>
           </li>
         ))}
       </ul>

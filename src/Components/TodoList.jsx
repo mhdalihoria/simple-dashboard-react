@@ -1,4 +1,5 @@
 import React from "react";
+import taskIcon from "../imgs/task-icon.png";
 
 export const TodoList = ({
   currentTodos,
@@ -31,33 +32,43 @@ export const TodoList = ({
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  console.log()
+
   const todoElements = currentTodos.map((todo) => (
-    <li className="list-item" key={todo.id}>
-      <span type="text" className="list">
-        {todo.title}
-      </span>
-      <div>
-        <button
-          className="button-complete task-button"
-          onClick={() => handleComplete(todo)}
-        >
-          <i className="fa fa-check-circle"></i>
-        </button>
-        <button
-          className="button-edit task-button"
-          onClick={() => handleEdit(todo)}
-        >
-          <i className="fa fa-edit"></i>
-        </button>
-        <button
-          className="button-delete task-button"
-          onClick={() => handleDelete(todo)}
-        >
-          <i className="fa fa-trash"></i>
-        </button>
-      </div>
-    </li>
+    <div className="todo-item" key={todo.id}>
+      <img src={taskIcon} />
+      <li className="list-item">
+        <div className="list-item--info">
+          <h4 type="text" className="list-item-info--title">
+            {todo.title}
+          </h4>
+          <h6 className="list-item-info--completed">
+            Completed: {`${todo.completed}`}
+          </h6>
+        </div>
+        <div className="list-buttons">
+          <button
+            className="button-complete task-button"
+            onClick={() => handleComplete(todo)}
+          >
+            <i className="fa fa-check-circle"></i>
+          </button>
+          <button
+            className="button-edit task-button"
+            onClick={() => handleEdit(todo)}
+          >
+            <i className="fa fa-edit"></i>
+          </button>
+          <button
+            className="button-delete task-button"
+            onClick={() => handleDelete(todo)}
+          >
+            <i className="fa fa-trash"></i>
+          </button>
+        </div>
+      </li>
+    </div>
   ));
 
-  return <div>{todoElements}</div>;
+  return <div className="todo-container">{todoElements}</div>;
 };

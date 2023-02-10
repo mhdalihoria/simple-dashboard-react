@@ -19,7 +19,7 @@ export default function Form({
   };
   return (
     <>
-      <form onSubmit={onFormSubmit}>
+      <form className="add-todo-form" onSubmit={onFormSubmit}>
         <input
           type="text"
           placeholder="Enter a Todo"

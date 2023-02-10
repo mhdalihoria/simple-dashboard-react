@@ -22,9 +22,6 @@ export default function Modal({ setShowModal, editTodo, setTodos, todos }) {
   };
 
   const submitTodos = () => {
-    //we copy the todos
-    //we we reassign the item
-    //and set the modified copy to the todos
     const foundIndex = todos.findIndex((item) => item.id === todoValues.id);
     const todosCopy = todos;
     todosCopy[foundIndex] = todoValues;
@@ -51,9 +48,11 @@ export default function Modal({ setShowModal, editTodo, setTodos, todos }) {
               type="checkbox"
               checked={todoValues.completed}
               onChange={changeCheckedHandler}
-            />
-            <button onClick={() => setShowModal(false)}>Close</button>
-            <button onClick={submitTodos}>Submit</button>
+            /> <br/>
+            <div className="buttons">
+            <button className="submit-modal" onClick={submitTodos}>Submit</button>
+            <button className="close-modal" onClick={() => setShowModal(false)}>Close</button>
+            </div>
           </div>
         )}
       </div>

@@ -16,10 +16,46 @@
 }
 
 .modal {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 300px;
   background-color: #fff;
 }
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+.modal-content h1{
+  text-align: center;
+}
+
+.modal-content input[type=text]{
+  padding: 2px 5px;
+  width: 90%;
+  margin: 1rem 0;
+}
+
+.buttons {
+  margin-top: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons button {
+  border: none;
+  padding: 10px 25px;
+  color: white;
+  border-radius: 5px;
+}
+
+.close-modal {
+  background: #eb3838;
+}
+
+.submit-modal {
+  background: green;
+}
+
 /* Modal styling end */
 
 /* ******************************************* */
@@ -31,6 +67,9 @@ nav {
   display: flex;
   justify-content: space-between;
   margin: 0.5rem 1rem;
+}
+nav:hover {
+  cursor: pointer
 }
 
 .left img,
@@ -96,27 +135,152 @@ nav {
 }
 
 .weather-container .text {
-    text-align: center;
-    padding-right: 1em;
+  text-align: center;
+  padding-right: 1em;
 }
 
 .text-temp {
   color: #ab31d6;
 }
 
-.weather-container .img img{
-    width: 100px;
-    object-fit: cover;
+.weather-container .img img {
+  width: 100px;
+  object-fit: cover;
 }
 /* header styling end */
+
+/* form / seachbar styling start */
+.add-todo-form {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 3.9rem;
+}
+
+.task-input {
+  padding: 7px 15px;
+  width: 56%;
+  border-radius: 5px / 5px 0 0 5px;
+  border: #ab31d6 solid 1px;
+}
+
+.task-input:focus {
+  outline: none;
+}
+
+.button-add {
+  padding: 7.8px 25px;
+  color: white;
+  background: #ab31d6;
+  border: none;
+  border-radius: 5px / 0 5px 5px 0;
+}
+
+.button-add:hover {
+  cursor: pointer;
+}
+/* form / seachbar styling end */
+
+/* Todo styling start */
+.todo-container {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.todo-item img {
+  width: 45px;
+  margin-right: 1rem;
+}
+
+.list-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-item-info--title {
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.list-item-info--completed {
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: #8c8c8c;
+  margin-top: 0.5em;
+}
+
+.task-button {
+  background: transparent;
+  border: none;
+  margin: 0 3px;
+}
+
+.button-complete:hover, .button-edit:hover, .button-delete:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+.button-complete {
+  color: green;
+}
+
+.button-edit {
+  color: #ab31d6;
+}
+
+.button-delete {
+  color: #eb3838;
+}
+/* Todo styling end */
+
+/* Pagination styling start */
+.pagination {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 200px;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+.pagination li {
+  border: 1px solid #ffe2a7;
+  background: white;
+  padding: 3px;
+  width: 24px;
+  height: 20px;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.pagination li:hover {
+  border: 1px solid #ab31d6;
+  background: #ab31d6;
+  color: white;
+  cursor: pointer;
+}
+
+/* Pagination styling end */
 
 /* Media Queries */
 
 @media (min-width: 400px) {
-    nav {
-        max-width: 90%;
-        margin: .5rem auto;
-      }
+  nav {
+    max-width: 90%;
+    margin: 0.5rem auto;
+  }
 
   .header {
     max-width: 80%;
@@ -132,5 +296,15 @@ nav {
     width: 200px;
     text-align: left;
     line-height: 2em;
+  }
+
+  .add-todo-form {
+    max-width: 270px;
+  }
+  
+  .task-input {
+    width: 56%;
+    border-radius: 5px / 5px 0 0 5px;
+    border: #ab31d6 solid 1px;
   }
 }
