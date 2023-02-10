@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../imgs/logo.png";
 import defultUsr from "../imgs/default-usr.png";
 import { Link } from "react-router-dom";
+import { ContextObj } from "../Context";
 
 export default function Navbar() {
   const [showSettings, setShowSettings] = useState(false);
+  const { user } = useContext(ContextObj);
 
   const clickHandler = () => {
     setShowSettings((prevShowSettings) => {
@@ -18,12 +20,22 @@ export default function Navbar() {
         <img src={logo} />
       </div>
       <div className="right">
-        <img src={defultUsr} onClick={clickHandler} />
+        <img src={user.imgLnk !== "" ? user.imgLnk : defultUsr} onClick={clickHandler} />
       </div>
       {showSettings && (
         <div className="user-settings">
-            <span><Link to="/login">Profile</Link></span>
-            <span>Logout</span>
+          {user.usrName === "" ? (
+            <span>
+              <Link to="/login">Login</Link>
+            </span>
+          ) : (
+            <>
+              <span>
+                <Link to="/login">Profile</Link>
+              </span>
+              <span>Logout</span>
+            </>
+          )}
         </div>
       )}
     </nav>
