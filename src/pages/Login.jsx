@@ -4,47 +4,67 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { user, setUser } = useContext(ContextObj);
-  const [deleteAcc, setDeleteAcc] = useState(false)
-  const [saveAccChanges, setSaveAccChanges] = useState(false)
-  const navigate = useNavigate()
+  const [saveAccChanges, setSaveAccChanges] = useState(false);
+  const [deleteAcc, setDeleteAcc] = useState(false);
+  const [loginErrors, setLoginErrors] = useState({
+    usrName: "",
+    email: "",
+    pwd: "",
+    pwd2: "",
+    imgLnk: "",
+    age: "",
+  });
+  const navigate = useNavigate();
 
   const changeHandler = (e) => {
     const { value, name } = e.target;
 
-    setUser(prevUser => {
-        return {
-            ...prevUser, 
-            [name]: value
-        }
-    })
+    setUser((prevUser) => {
+      return {
+        ...prevUser,
+        [name]: value,
+      };
+    });
   };
 
   const saveChanges = () => {
     //apply filteration logic
+    // verifyCredientials()
     //add user to local storage
+    setSaveAccChanges(true);
     //redirect to home page
-  }
+    navigate("/");
+  };
 
   const deleteAccount = () => {
-    setDeleteAcc(true)
-    navigate("/")
-  }
+    setDeleteAcc(true);
+    navigate("/");
+  };
 
   useEffect(() => {
-    // first
-  
-  }, [saveAccChanges])
-  
+    // if (saveAccChanges === true) {
+        localStorage.setItem("user", JSON.stringify(user));
+    // }
+  }, [saveAccChanges]);
 
   useEffect(() => {
-    localStorage.removeItem("user")
-  
-  }, [deleteAcc])
-  
+    // localStorage.removeItem("user")
+    if (deleteAcc === true) {
+      setUser({
+        usrName: "",
+        email: "",
+        pwd: "",
+        pwd2: "",
+        imgLnk: "",
+        age: "",
+      });
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [deleteAcc]);
 
   return (
     <div className="login-container">
-        <label htmlFor="usrName">Name</label>
+      <label htmlFor="usrName">Name</label>
       <input
         type="text"
         id="usrName"
@@ -53,7 +73,7 @@ export const Login = () => {
         onChange={changeHandler}
         required
       />
-        <label htmlFor="age">Age</label>
+      <label htmlFor="age">Age</label>
       <input
         type="text"
         id="age"
@@ -62,7 +82,7 @@ export const Login = () => {
         onChange={changeHandler}
         required
       />
-        <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         id="email"
@@ -71,7 +91,7 @@ export const Login = () => {
         onChange={changeHandler}
         required
       />
-        <label htmlFor="pwd">Enter Password</label>
+      <label htmlFor="pwd">Enter Password</label>
       <input
         type="password"
         id="pwd"
@@ -79,8 +99,9 @@ export const Login = () => {
         value={user.pwd}
         onChange={changeHandler}
         required
+        minLength={8}
       />
-        <label htmlFor="pwd2">Re-enter password</label>
+      <label htmlFor="pwd2">Re-enter password</label>
       <input
         type="password"
         id="pwd2"
@@ -88,8 +109,9 @@ export const Login = () => {
         value={user.pwd2}
         onChange={changeHandler}
         required
+        minLength={8}
       />
-        <label htmlFor="img">Enter your Image Link</label>
+      <label htmlFor="img">Enter your Image Link</label>
       <input
         type="text"
         id="img"
@@ -104,3 +126,68 @@ export const Login = () => {
     </div>
   );
 };
+
+// const verifyCredientials = () => {
+//   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+//   // email verification
+
+//   if (!regex.test(user.email)) {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         email: "This is not a valid email format!",
+//       };
+//     });
+//   } else {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         email: "",
+//       };
+//     });
+//   }
+
+//   //Password verification
+//   if (user.pwd.length < 8 ) {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         pwd: "Passwords must be at least 8 characters",
+//       };
+//     });
+//   } else {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         pwd: "",
+//       };
+//     });
+//   }
+
+//   if (user.pwd !== user.pwd2) {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         pwd2: "Passwords Do Not Match",
+//       };
+//     });
+//   } else {
+//     setLoginErrors((prevLoginErrors) => {
+//       return {
+//         ...prevLoginErrors,
+//         pwd2: "",
+//       };
+//     });
+//   }
+
+//   if (
+//     user.pwd &&
+//     user.email &&
+//     user.age &&
+//     user.pwd2&&
+//     user.img&&
+//     user.usrName
+//   ) {
+//     setSaveAccChanges(true);
+//   }
+// };
